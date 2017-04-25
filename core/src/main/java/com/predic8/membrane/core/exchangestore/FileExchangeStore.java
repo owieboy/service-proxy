@@ -113,10 +113,11 @@ public class FileExchangeStore extends AbstractExchangeStore {
 			try {
 				switch (flow) {
 				case REQUEST:
-					writeFile(exc.getRequest(), buf.toString());
+					writeFile(exc.getRequest(), buf.append(".orig").toString());
 					break;
 				case ABORT:
 				case RESPONSE:
+					writeFile(exc.getRequest(), buf.toString());
 					if (exc.getResponse() != null)
 						writeFile(exc.getResponse(), buf2.toString());
 				}
