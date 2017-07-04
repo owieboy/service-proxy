@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -54,7 +54,7 @@ public class FileExchangeStore extends AbstractExchangeStore {
 	private static Logger log = LoggerFactory.getLogger(FileExchangeStore.class
 			.getName());
 
-	private static AtomicInteger counter = new AtomicInteger();
+	private static AtomicLong counter = new AtomicLong();
 
 	private static final String DATE_FORMAT = "'h'HH'm'mm's'ss'ms'SSS";
 
@@ -94,7 +94,7 @@ public class FileExchangeStore extends AbstractExchangeStore {
 	}
 
 	private void snapInternal(AbstractExchange exc, Flow flow) {
-		int fileNumber = counter.incrementAndGet();
+		long fileNumber = counter.incrementAndGet();
 
 		StringBuilder buf = getDirectoryNameBuffer(exc.getTime());
 
